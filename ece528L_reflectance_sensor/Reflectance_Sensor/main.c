@@ -21,6 +21,8 @@
 #include "inc/Reflectance_Sensor.h"
 #include "inc/Print_Binary.h"
 
+void Detect_Line_Position(uint8_t reflectance_sensor_data);
+
 int main(void)
 {
     // Initialize the 48 MHz Clock
@@ -43,6 +45,77 @@ int main(void)
     {
         reflectance_sensor_data = Reflectance_Sensor_Read(1000);
         Print_Binary(reflectance_sensor_data);
+        Detect_Line_Position(reflectance_sensor_data);
         Clock_Delay1ms(10);
+    }
+}
+
+void Detect_Line_Position(uint8_t reflectance_sensor_data) {
+
+    /* Constant definitions for the built-in red LED
+    const uint8_t RED_LED_OFF           =   0x00;
+    const uint8_t RED_LED_ON            =   0x01;
+
+    Constant definitions for the RGB LED colors
+    const uint8_t RGB_LED_OFF           =   0x00;
+    const uint8_t RGB_LED_RED           =   0x01;
+    const uint8_t RGB_LED_GREEN         =   0x02;
+    const uint8_t RGB_LED_YELLOW        =   0x03;
+    const uint8_t RGB_LED_BLUE          =   0x04;
+    const uint8_t RGB_LED_PINK          =   0x05;
+    const uint8_t RGB_LED_SKY_BLUE      =   0x06;
+    const uint8_t RGB_LED_WHITE         =   0x07;
+    */
+
+    switch (reflectance_sensor_data) {
+        case 0x18:
+            // Line Maze Possibility: Center
+            LED1_Output(0x00);
+            LED2_Output(0x02);
+
+        case 0x1C:
+            // Line Maze Possibility: Slightly Left from Center
+            LED1_Output(0x00);
+            LED2_Output(0x03);
+
+        case 0x38:
+            // Line Maze Possibility: Slightly Right from Center
+            LED1_Output(0x00);
+            LED2_Output(0x05);
+
+        case 0x01:
+            // Line Maze Possibility: Far Left from Center
+            LED1_Output(0x00);
+            LED2_Output(0x07);
+
+        case 0x80:
+            // Line Maze Possibility: Far Right from Center
+            LED1_Output(0x00);
+            LED2_Output(0x06);
+
+        case 0xF8:
+            // Line Maze Possibility: Left Turn
+            LED1_Output(0x01);
+            LED2_Output(0x07);
+
+        case 0x1F:
+            // Line Maze Possibility: Right Turn
+            LED1_Output(0x01);
+            LED2_Output(0x06);
+
+        case 0xFF:
+            // Line Maze Possibility: T-Intersection
+            LED1_Output(0x00);
+            LED2_Output(0x04);
+
+        case 0x00:
+            // Line Maze Possibility: Dead End
+            LED1_Output(0x00);
+            LED2_Output(0x01);
+
+        default:
+            LED1_Output(0x00);
+            LED2_Output(0x00);
+
     }
 }
