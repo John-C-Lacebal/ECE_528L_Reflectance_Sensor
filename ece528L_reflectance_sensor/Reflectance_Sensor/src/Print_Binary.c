@@ -18,8 +18,6 @@ void Print_Binary(uint8_t value_to_convert)
 {
     // Your Print_Binary function implementation goes here
 
-    printf("Decimal: %d\n", value_to_convert);
-
     printf("Binary: ");
 
     for (int bit = 7; bit >= 0; bit--) {
