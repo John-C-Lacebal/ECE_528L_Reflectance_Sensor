@@ -52,70 +52,80 @@ int main(void)
 
 void Detect_Line_Position(uint8_t reflectance_sensor_data) {
 
-    /* Constant definitions for the built-in red LED
-    const uint8_t RED_LED_OFF           =   0x00;
-    const uint8_t RED_LED_ON            =   0x01;
+    // Constant definitions for the built-in red LED
+    uint8_t RED_LED_OFF           =   0x00;
+    uint8_t RED_LED_ON            =   0x01;
 
-    Constant definitions for the RGB LED colors
-    const uint8_t RGB_LED_OFF           =   0x00;
-    const uint8_t RGB_LED_RED           =   0x01;
-    const uint8_t RGB_LED_GREEN         =   0x02;
-    const uint8_t RGB_LED_YELLOW        =   0x03;
-    const uint8_t RGB_LED_BLUE          =   0x04;
-    const uint8_t RGB_LED_PINK          =   0x05;
-    const uint8_t RGB_LED_SKY_BLUE      =   0x06;
-    const uint8_t RGB_LED_WHITE         =   0x07;
-    */
+    // Constant definitions for the RGB LED colors
+    uint8_t RGB_LED_OFF           =   0x00;
+    uint8_t RGB_LED_RED           =   0x01;
+    uint8_t RGB_LED_GREEN         =   0x02;
+    uint8_t RGB_LED_YELLOW        =   0x03;
+    uint8_t RGB_LED_BLUE          =   0x04;
+    uint8_t RGB_LED_PINK          =   0x05;
+    uint8_t RGB_LED_SKY_BLUE      =   0x06;
+    uint8_t RGB_LED_WHITE         =   0x07;
+
 
     switch (reflectance_sensor_data) {
         case 0x18:
             // Line Maze Possibility: Center
-            LED1_Output(0x00);
-            LED2_Output(0x02);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_GREEN);
+            break;
 
         case 0x1C:
             // Line Maze Possibility: Slightly Left from Center
-            LED1_Output(0x00);
-            LED2_Output(0x03);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_YELLOW);
+            break;
 
         case 0x38:
             // Line Maze Possibility: Slightly Right from Center
-            LED1_Output(0x00);
-            LED2_Output(0x05);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_PINK);
+            break;
 
         case 0x01:
             // Line Maze Possibility: Far Left from Center
-            LED1_Output(0x00);
-            LED2_Output(0x07);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_WHITE);
+            break;
 
         case 0x80:
             // Line Maze Possibility: Far Right from Center
-            LED1_Output(0x00);
-            LED2_Output(0x06);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_SKY_BLUE);
+            break;
 
         case 0xF8:
             // Line Maze Possibility: Left Turn
-            LED1_Output(0x01);
-            LED2_Output(0x07);
+            LED1_Output(RED_LED_ON);
+            LED2_Output(RGB_LED_WHITE);
+            break;
 
         case 0x1F:
             // Line Maze Possibility: Right Turn
-            LED1_Output(0x01);
-            LED2_Output(0x06);
+            LED1_Output(RED_LED_ON);
+            LED2_Output(RGB_LED_SKY_BLUE);
+            break;
 
         case 0xFF:
             // Line Maze Possibility: T-Intersection
-            LED1_Output(0x00);
-            LED2_Output(0x04);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_BLUE);
+            break;
 
         case 0x00:
             // Line Maze Possibility: Dead End
-            LED1_Output(0x00);
-            LED2_Output(0x01);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_RED);
+            break;
 
         default:
-            LED1_Output(0x00);
-            LED2_Output(0x00);
+            LED1_Output(RED_LED_OFF);
+            LED2_Output(RGB_LED_OFF);
+            break;
 
     }
 }
