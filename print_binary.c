@@ -7,7 +7,7 @@
 * of the Print_Binary function that takes in a uint8_t value and
 * prints the value in binary format.
 *
-* @author Aaron Nanas
+* @author John Lacebal
 */
 
 #include <stdio.h>
