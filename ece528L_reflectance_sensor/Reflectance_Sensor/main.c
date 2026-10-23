@@ -51,22 +51,6 @@ int main(void)
 }
 
 void Detect_Line_Position(uint8_t reflectance_sensor_data) {
-
-    // Constant definitions for the built-in red LED
-    uint8_t RED_LED_OFF           =   0x00;
-    uint8_t RED_LED_ON            =   0x01;
-
-    // Constant definitions for the RGB LED colors
-    uint8_t RGB_LED_OFF           =   0x00;
-    uint8_t RGB_LED_RED           =   0x01;
-    uint8_t RGB_LED_GREEN         =   0x02;
-    uint8_t RGB_LED_YELLOW        =   0x03;
-    uint8_t RGB_LED_BLUE          =   0x04;
-    uint8_t RGB_LED_PINK          =   0x05;
-    uint8_t RGB_LED_SKY_BLUE      =   0x06;
-    uint8_t RGB_LED_WHITE         =   0x07;
-
-
     switch (reflectance_sensor_data) {
         case 0x18:
             // Line Maze Possibility: Center
